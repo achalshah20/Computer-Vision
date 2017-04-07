@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1487811006 source:/media/achal/Other/Study/Coursework/CV/achshah-kkokje-shukumar-a2/lab2/lab2/main.cpp
+	<sstream>
+	<fstream>
+	<string>
+	<iostream>
+	<vector>
+

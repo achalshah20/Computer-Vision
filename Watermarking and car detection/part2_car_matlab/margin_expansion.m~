@@ -1,0 +1,34 @@
+% Author: Lijiang Guo
+% Date: Feb 11, 2017
+% This function preprocess image before convolution. 
+% It expands margin of image by mirroring.
+% Input: 
+%   img: greyscale image with edges, 
+%   mar_: margin
+%
+% Output: img_out: Image with edges.
+
+%%
+function img_out = margin_expansion(img, mar_x, mar_y)
+[m,n] = size(img);
+img_out = zeros(m+2*mar_y, n+2*mar_x);
+img_out(1+mar_y:m+mar_y,1+mar_x:n+mar_x) = img;
+
+% top rows
+img_out(1:mar_y,1+mar_x:n+mar_x) = img(mar_y:-1:1, 1:n);
+% bottom rows
+img_out(m+mar_y+1:m+2*mar_y, 1+mar_x:n+mar_x) = img(m:-1:m-mar_y+1, 1:n);
+% left cols
+img_out(1+mar_y:m+mar_y,1:mar_x) = img(1:m, mar_x:-1:1);
+% right cols
+img_out(1+mar_y:m+mar_y,n+mar_x+1:n+2*mar_x) = img(1:m, n:-1:n-mar_x+1);
+% top-left corners
+img_out(1:mar_y,1:mar_x) = img(mar_y:-1:1,mar_x:-1:1);
+% top-right corners
+img_out(1:mar_y,n+mar_x+1:n+2*mar_x) = img(mar_y:-1:1,n:-1:n-mar_x+1);
+% bottom-left corners
+img_out(m+mar_y+1:m+2*mar_y,1:mar_x) = img(m:-1:m-mar_y+1,1:mar_x);
+% botton-right corners
+img_out(m+mar_y+1:m+2*mar_y,n+mar_x+1:n+2*mar_x) = img(m:-1:m-mar_y+1,n:-1:n-mar_x+1);
+
+end
